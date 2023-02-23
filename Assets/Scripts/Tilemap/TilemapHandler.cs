@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
 public class TilemapHandler : MonoBehaviour
 {
@@ -28,4 +29,14 @@ public class TilemapHandler : MonoBehaviour
          _tiles[x].Add(y, tile);
       }
    }
+
+   public static Vector2 GetRandomEmptyTileForResource()
+   {
+      var emptyTile = _emptyTiles[Random.Range(0, _emptyTiles.Count)];
+
+      _emptyTiles.Remove(emptyTile);
+
+      return new Vector2(emptyTile.x, emptyTile.y);
+   }
+   
 }
