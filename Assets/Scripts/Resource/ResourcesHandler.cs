@@ -6,22 +6,24 @@ using UnityEngine;
 public class ResourcesHandler : MonoBehaviour
 {
    public static List<Constants.Resources> PlayerResourcesList = new ();
-   private Dictionary<Constants.Resources, ResourceData> _resources = new ();
+   public static Dictionary<Constants.Resources, ResourceData> ResourceDatas = new ();
 
    private void Awake()
    {
       var resourcesSOs = Resources.LoadAll<ResourceSO>("ResourcesGOs/");
 
       foreach (var resourcesSO in resourcesSOs)
-         _resources.Add(resourcesSO.resourceType, new ResourceData(resourcesSO.resourceType, resourcesSO.object2Instantiate));
+         ResourceDatas.Add(resourcesSO.resourceType, new ResourceData(resourcesSO));
 
-      AddResource(Constants.Resources.Wood);
-      AddResource(Constants.Resources.Stone);
+      IncreaseResourceLevel(Constants.Resources.Wood);
+      IncreaseResourceLevel(Constants.Resources.Stone);
    }
 
-   public static void AddResource(Constants.Resources resourceType)
+   public static void IncreaseResourceLevel(Constants.Resources resourceType)
    {
-      PlayerResourcesList.Add(resourceType);
-      PlayerResourcesLevels.Add(resourceType, 1);
+      if (PlayerResourcesList.Contains(resourceType) == false)
+         PlayerResourcesList.Add(resourceType);
+      
+      ResourceDatas[resourceType].IncreaseResourceLevel();
    }
 }

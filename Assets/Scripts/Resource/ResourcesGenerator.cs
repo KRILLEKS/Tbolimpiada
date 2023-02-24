@@ -21,7 +21,7 @@ public class ResourcesGenerator : MonoBehaviour
    {
       if (Time.time - _lastResourceGenerationTime > resourceSpawnRate)
       {
-         foreach (var resource in PlayerResources.PlayerResourcesList)
+         foreach (var resource in ResourcesHandler.PlayerResourcesList)
             SpawnResource(resource);
 
          _lastResourceGenerationTime = Time.time;
@@ -31,6 +31,10 @@ public class ResourcesGenerator : MonoBehaviour
    // TODO: make folder for spawned resources by types
    private static void SpawnResource(Constants.Resources resource2Spawn)
    {
-      var resourcePos = TilemapHandler.GetRandomEmptyTileForResource();
+      if (ResourcesHandler.ResourceDatas[resource2Spawn].CurrentResourceAmountOnMap >= ResourcesHandler.ResourceDatas[resource2Spawn].ResourceSpawnLimit)
+         return;
+
+      // TODO: make object pooling
+      Instantiate(ResourcesHandler.ResourceDatas[resource2Spawn].Object2Spawn, TilemapHandler.GetRandomEmptyTilePosForResource(), Quaternion.identity, _commonFolder);
    }
 }

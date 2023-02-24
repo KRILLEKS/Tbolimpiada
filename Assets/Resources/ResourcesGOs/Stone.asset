@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: Stone
   m_EditorClassIdentifier: 
   resourceType: 1
-  object2Instantiate: {fileID: 575876408235083207, guid: e1f6d4ad390c5984b96f2f63c2291179, type: 3}
+  object2Instantiate: {fileID: 7528986910941888586, guid: e1f6d4ad390c5984b96f2f63c2291179, type: 3}
+  baseResourceLimit: 500
+  resourceLimitIncrement: 0
+  resource2XChanceIncrement: 20

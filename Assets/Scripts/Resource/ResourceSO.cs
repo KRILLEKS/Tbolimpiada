@@ -5,7 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Resource", menuName = "ScriptableObjects/Resource")]
 public class ResourceSO : ScriptableObject
 {
-   // TODO: resource level rules (limit, 2X)
    public Constants.Resources resourceType;
    public GameObject object2Instantiate;
+   public int baseResourceLimit;
+   public int resourceLimitIncrement;
+   public int resource2XChanceIncrement;
 }

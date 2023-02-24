@@ -17,6 +17,9 @@ public class TilemapHandler : MonoBehaviour
    {
       _emptyTiles = TilemapExtensionMethods.GetAllTiles(tilemap).ToList();
 
+      foreach (var tile in _emptyTiles)
+         tile.isEmpty = true;
+
       // fill _tiles array
       foreach (var tile in _emptyTiles)
       {
@@ -30,13 +33,23 @@ public class TilemapHandler : MonoBehaviour
       }
    }
 
-   public static Vector2 GetRandomEmptyTileForResource()
+   public static bool IsTileEmpty(Vector2Int tilePos)
+   {
+      if (_tiles.ContainsKey(tilePos.x) && _tiles[tilePos.x].ContainsKey(tilePos.y))
+         return _tiles[tilePos.x][tilePos.y].isEmpty;
+
+      return false;
+   }
+
+   public static Vector2 GetRandomEmptyTilePosForResource()
    {
       var emptyTile = _emptyTiles[Random.Range(0, _emptyTiles.Count)];
 
+      // we'll spawn resource on this pos
       _emptyTiles.Remove(emptyTile);
+      _tiles[emptyTile.x][emptyTile.y].isEmpty = false;
 
-      return new Vector2(emptyTile.x, emptyTile.y);
+      return new Vector2(emptyTile.x + 0.5f, emptyTile.y + 0.5f);
    }
    
 }

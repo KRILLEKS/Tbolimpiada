@@ -5,25 +5,47 @@ using UnityEngine;
 public class ResourceData
 {
    // initialize new data 
-   public ResourceData(Constants.Resources resourceType, GameObject object2Spawn)
+   public ResourceData(ResourceSO resourceSo)
    {
-      ResourceType = resourceType;
-      Object2Spawn = object2Spawn;
+      ResourceType = resourceSo.resourceType;
+      Object2Spawn = resourceSo.object2Instantiate;
+
+      _resourceLimitIncrement = resourceSo.resourceLimitIncrement;
+      _resource2XChanceIncrement = resourceSo.resource2XChanceIncrement;
       // -1 base value. Means that resource isn't unlocked
       ResourceLevel = -1;
-      ResourceSpawnLimit = -1;
-      Resource2XChance = -1;
+      ResourceSpawnLimit = resourceSo.baseResourceLimit;
+      Resource2XChance = 0;
+      CurrentResourceAmountOnMap = 0;
    }
 
    public Constants.Resources ResourceType { private set; get; }
    public GameObject Object2Spawn { private set; get; }
-
    public int ResourceLevel { private set; get; }
    public int ResourceSpawnLimit { private set; get; }
    public int Resource2XChance { private set; get; }
+   public int CurrentResourceAmountOnMap{ private set; get; }
+
+   private int _resourceLimitIncrement;
+   private int _resource2XChanceIncrement;
 
    public void IncreaseResourceLevel()
    {
-      
+      if (ResourceLevel == -1)
+      {
+         ResourceLevel = 1;
+      }
+      else
+      {
+         ResourceLevel++;
+         ResourceSpawnLimit += _resourceLimitIncrement;
+         Resource2XChance = _resource2XChanceIncrement;
+      }
+   }
+
+   // TODO: make invocation of this via object pooling
+   public void ResourceWasSpawned()
+   {
+      CurrentResourceAmountOnMap++;
    }
 }
