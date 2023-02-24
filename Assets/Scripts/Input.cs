@@ -6,6 +6,7 @@ using UnityEngine;
 public class Input : MonoBehaviour
 {
    public static Vector2 MovementVector;
+   public static Vector3 MousePosition;
    
    private static InputMap _inputMap;
 
@@ -22,6 +23,7 @@ public class Input : MonoBehaviour
    private void Update()
    {
       MovementVector = _inputMap.Player.Move.ReadValue<Vector2>();
+      MousePosition = UnityEngine.Input.mousePosition;
    }
 
    private void OnDisable()
