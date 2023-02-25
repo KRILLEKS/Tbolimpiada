@@ -17,6 +17,13 @@ public class ResourcesHandler : MonoBehaviour
 
       IncreaseResourceLevel(Constants.Resources.Wood);
       IncreaseResourceLevel(Constants.Resources.Stone);
+      // IncreaseResourceLevel(Constants.Resources.Obelisk);
+      // IncreaseResourceLevel(Constants.Resources.BerryBush);
+      // IncreaseResourceLevel(Constants.Resources.Coal);
+      // IncreaseResourceLevel(Constants.Resources.IronOre);
+      // IncreaseResourceLevel(Constants.Resources.Pumpkin);
+      // IncreaseResourceLevel(Constants.Resources.Flowers);
+      // IncreaseResourceLevel(Constants.Resources.Hardwood);
    }
 
    public static void IncreaseResourceLevel(Constants.Resources resourceType)

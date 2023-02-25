@@ -9,6 +9,8 @@ public class CursorHandler : MonoBehaviour
    [SerializeField] private Camera camera;
    [SerializeField] private GameObject objectSelectionCanvas;
 
+   public static ObjectOnTile SelectedObject;
+   
    private Vector2Int _previousTileUnderCursor;
 
    private void Update()

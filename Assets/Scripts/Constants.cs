@@ -15,7 +15,7 @@ public class Constants
       Flowers,
       Hardwood,
       Pumpkin,
-      Monolith,
+      Obelisk,
       SoulShard,
    }
 }

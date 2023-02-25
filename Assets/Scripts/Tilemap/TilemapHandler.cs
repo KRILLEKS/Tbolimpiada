@@ -18,13 +18,13 @@ public class TilemapHandler : MonoBehaviour
       _emptyTiles = TilemapExtensionMethods.GetAllTiles(tilemap).ToList();
 
       foreach (var tile in _emptyTiles)
-         tile.isEmpty = true;
+         tile.IsEmpty = true;
 
       // fill _tiles array
       foreach (var tile in _emptyTiles)
       {
-         var x = tile.x;
-         var y = tile.y;
+         var x = tile.X;
+         var y = tile.Y;
 
          if (_tiles.ContainsKey(x) == false)
             _tiles.Add(x, new Dictionary<int, TileData>());
@@ -36,20 +36,21 @@ public class TilemapHandler : MonoBehaviour
    public static bool IsTileEmpty(Vector2Int tilePos)
    {
       if (_tiles.ContainsKey(tilePos.x) && _tiles[tilePos.x].ContainsKey(tilePos.y))
-         return _tiles[tilePos.x][tilePos.y].isEmpty;
+         return _tiles[tilePos.x][tilePos.y].IsEmpty;
 
       return false;
    }
 
-   public static Vector2 GetRandomEmptyTilePosForResource()
+   public static TileData GetRandomEmptyTile()
    {
-      var emptyTile = _emptyTiles[Random.Range(0, _emptyTiles.Count)];
-
-      // we'll spawn resource on this pos
-      _emptyTiles.Remove(emptyTile);
-      _tiles[emptyTile.x][emptyTile.y].isEmpty = false;
-
-      return new Vector2(emptyTile.x + 0.5f, emptyTile.y + 0.5f);
+      return _emptyTiles[Random.Range(0, _emptyTiles.Count)];
    }
-   
+
+   public static void OccupyTile(TileData tile2Occupy, ObjectOnTile ObjectOnTileClass)
+   {
+      // we'll spawn resource on this pos
+      _emptyTiles.Remove(tile2Occupy);
+      tile2Occupy.ObjectOnTile = ObjectOnTileClass;
+      _tiles[tile2Occupy.X][tile2Occupy.Y].IsEmpty = false;
+   }
 }

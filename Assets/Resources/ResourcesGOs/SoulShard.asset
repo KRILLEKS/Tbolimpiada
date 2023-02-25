@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7378f7d9bc88ff41ae1d9926d6acf33, type: 3}
   m_Name: SoulShard
   m_EditorClassIdentifier: 
-  resourceType: 13
+  resourceType: 10
+  object2Instantiate: {fileID: 0}
+  baseResourceLimit: 0
+  resourceLimitIncrement: 0
+  resource2XChanceIncrement: 0

@@ -20,9 +20,6 @@ public class PlayerAnimatorController : MonoBehaviour
    private void Update()
    {
       SetPlayerMovementState(Input.MovementVector != Vector2.zero);
-      
-      if (UnityEngine.Input.GetKey(KeyCode.Mouse0))
-         SetAttackAnimation();
    }
 
    public static void SetPlayerMovementState(bool state)

@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: IronOre
   m_EditorClassIdentifier: 
   resourceType: 2
+  object2Instantiate: {fileID: 7528986910941888586, guid: 9e426291d3d01b546a4cdac655a4d0a8, type: 3}
+  baseResourceLimit: 20
+  resourceLimitIncrement: 0
+  resource2XChanceIncrement: 0

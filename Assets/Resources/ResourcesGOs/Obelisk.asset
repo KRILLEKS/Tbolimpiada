@@ -10,6 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7378f7d9bc88ff41ae1d9926d6acf33, type: 3}
-  m_Name: Monolith
+  m_Name: Obelisk
   m_EditorClassIdentifier: 
-  resourceType: 12
+  resourceType: 9
+  object2Instantiate: {fileID: 7053270559034023998, guid: a79453490a8289e449b8cdea6a5535f7, type: 3}
+  baseResourceLimit: 20
+  resourceLimitIncrement: 0
+  resource2XChanceIncrement: 0

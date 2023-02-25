@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class TileData
 {
-   public int x;
-   public int y;
-   public bool isEmpty;
+   public int X;
+   public int Y;
+   public bool IsEmpty;
+   
+   public ObjectOnTile ObjectOnTile; // this is base class for all objects classes
 }

@@ -35,6 +35,12 @@ public class ResourcesGenerator : MonoBehaviour
          return;
 
       // TODO: make object pooling
-      Instantiate(ResourcesHandler.ResourceDatas[resource2Spawn].Object2Spawn, TilemapHandler.GetRandomEmptyTilePosForResource(), Quaternion.identity, _commonFolder);
+      var tileData = TilemapHandler.GetRandomEmptyTile();
+      var instance = Instantiate(ResourcesHandler.ResourceDatas[resource2Spawn].Object2Spawn,
+                                 new Vector3(tileData.X + .5f, tileData.Y + .5f),
+                                 Quaternion.identity,
+                                 _commonFolder);
+
+      TilemapHandler.OccupyTile(tileData, instance.GetComponent<ObjectOnTile>());
    }
 }

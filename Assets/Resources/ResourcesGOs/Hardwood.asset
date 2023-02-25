@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7378f7d9bc88ff41ae1d9926d6acf33, type: 3}
   m_Name: Hardwood
   m_EditorClassIdentifier: 
-  resourceType: 10
+  resourceType: 7
+  object2Instantiate: {fileID: 7053270559034023998, guid: a024d33008c37064cac02f36a2a10686, type: 3}
+  baseResourceLimit: 20
+  resourceLimitIncrement: 0
+  resource2XChanceIncrement: 0

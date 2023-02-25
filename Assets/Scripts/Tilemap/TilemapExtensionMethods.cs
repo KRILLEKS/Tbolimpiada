@@ -23,9 +23,9 @@ public class TilemapExtensionMethods
 
             var tileData = new TileData()
             {
-               x = x,
-               y = y,
-               isEmpty = true,
+               X = x,
+               Y = y,
+               IsEmpty = true,
             };
             yield return tileData;
          }
