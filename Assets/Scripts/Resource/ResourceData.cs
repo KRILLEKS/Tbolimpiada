@@ -17,6 +17,8 @@ public class ResourceData
       ResourceSpawnLimit = resourceSo.baseResourceLimit;
       Resource2XChance = 0;
       CurrentResourceAmountOnMap = 0;
+
+      ResourceMaxHealth = resourceSo.resourceHealthAmount;
    }
 
    public Constants.Resources ResourceType { private set; get; }
@@ -25,6 +27,7 @@ public class ResourceData
    public int ResourceSpawnLimit { private set; get; }
    public int Resource2XChance { private set; get; }
    public int CurrentResourceAmountOnMap{ private set; get; }
+   public float ResourceMaxHealth { private set; get; }
 
    private int _resourceLimitIncrement;
    private int _resource2XChanceIncrement;

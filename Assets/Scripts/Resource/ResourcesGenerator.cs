@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ResourcesGenerator : MonoBehaviour
 {
+   [SerializeField] private bool toGenerateResources;
+   [Space]
    [SerializeField] private Transform folderSerializable;
    [SerializeField] private float resourceSpawnRate; // in seconds
 
@@ -19,6 +21,9 @@ public class ResourcesGenerator : MonoBehaviour
 
    void Update()
    {
+      if (toGenerateResources == false)
+         return;
+      
       if (Time.time - _lastResourceGenerationTime > resourceSpawnRate)
       {
          foreach (var resource in ResourcesHandler.PlayerResourcesList)
@@ -34,13 +39,12 @@ public class ResourcesGenerator : MonoBehaviour
       if (ResourcesHandler.ResourceDatas[resource2Spawn].CurrentResourceAmountOnMap >= ResourcesHandler.ResourceDatas[resource2Spawn].ResourceSpawnLimit)
          return;
 
-      // TODO: make object pooling
       var tileData = TilemapHandler.GetRandomEmptyTile();
-      var instance = Instantiate(ResourcesHandler.ResourceDatas[resource2Spawn].Object2Spawn,
-                                 new Vector3(tileData.X + .5f, tileData.Y + .5f),
-                                 Quaternion.identity,
-                                 _commonFolder);
+      var poolObject = ObjectPooler.GetObjectFromPool(resource2Spawn.ToString());
+      
+      poolObject.GO.transform.position = new Vector3(tileData.X + .5f, tileData.Y + .5f);
+      poolObject.GO.transform.parent = _commonFolder;
 
-      TilemapHandler.OccupyTile(tileData, instance.GetComponent<ObjectOnTile>());
+      TilemapHandler.OccupyTile(tileData, poolObject);
    }
 }

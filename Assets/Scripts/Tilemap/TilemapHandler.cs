@@ -41,16 +41,29 @@ public class TilemapHandler : MonoBehaviour
       return false;
    }
 
+   public static TileData GetTileOnPosition(Vector2Int tilePos)
+   {
+      return _tiles[tilePos.x][tilePos.y];
+   }
+
    public static TileData GetRandomEmptyTile()
    {
       return _emptyTiles[Random.Range(0, _emptyTiles.Count)];
    }
 
-   public static void OccupyTile(TileData tile2Occupy, ObjectOnTile ObjectOnTileClass)
+   public static void OccupyTile(TileData tile2Occupy, ObjectOnTile objectOnTileClass)
    {
-      // we'll spawn resource on this pos
-      _emptyTiles.Remove(tile2Occupy);
-      tile2Occupy.ObjectOnTile = ObjectOnTileClass;
+      tile2Occupy.ObjectOnTile = objectOnTileClass;
       _tiles[tile2Occupy.X][tile2Occupy.Y].IsEmpty = false;
+      _emptyTiles.Remove(tile2Occupy);
+   }
+
+   public static void ReleaseTile(Vector3 tilePos)
+   {
+      var tileData = GetTileOnPosition(new Vector2Int(Mathf.FloorToInt(tilePos.x), Mathf.FloorToInt(tilePos.y)));
+      
+      tileData.ObjectOnTile = null;
+      _tiles[tileData.X][tileData.Y].IsEmpty = true;
+      _emptyTiles.Add(tileData);
    }
 }

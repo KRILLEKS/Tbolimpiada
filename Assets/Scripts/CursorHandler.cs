@@ -2,16 +2,23 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CursorHandler : MonoBehaviour
 {
    // we won't use camera.main in case we'll have multiple cameras
    [SerializeField] private Camera camera;
-   [SerializeField] private GameObject objectSelectionCanvas;
-
-   public static ObjectOnTile SelectedObject;
+   [FormerlySerializedAs("objectSelectionCanvas"),SerializeField] private GameObject objectSelectionCanvasSerializable;
    
-   private Vector2Int _previousTileUnderCursor;
+   public static ObjectOnTile SelectedObject;
+
+   private static GameObject _objectSelectionCanvas;
+   private static Vector2Int _previousTileUnderCursor;
+
+   private void Awake()
+   {
+      _objectSelectionCanvas = objectSelectionCanvasSerializable;
+   }
 
    private void Update()
    {
@@ -22,13 +29,20 @@ public class CursorHandler : MonoBehaviour
       {
          if (TilemapHandler.IsTileEmpty(tileUnderCursor) == false)
          {
-            objectSelectionCanvas.SetActive(true);
-            objectSelectionCanvas.transform.position = tileUnderCursor + new Vector2(.5f, .5f);
+            SelectedObject = TilemapHandler.GetTileOnPosition(tileUnderCursor).ObjectOnTile;
+            _objectSelectionCanvas.SetActive(true);
+            _objectSelectionCanvas.transform.position = tileUnderCursor + new Vector2(.5f, .5f);
          }
          else
-            objectSelectionCanvas.SetActive(false);
+            TurnOffSelection();
 
          _previousTileUnderCursor = tileUnderCursor;
       }
+   }
+
+   public static void TurnOffSelection()
+   {
+      _objectSelectionCanvas.SetActive(false);
+      SelectedObject = null;
    }
 }

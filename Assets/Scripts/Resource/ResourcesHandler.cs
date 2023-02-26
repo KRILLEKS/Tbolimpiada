@@ -29,8 +29,13 @@ public class ResourcesHandler : MonoBehaviour
    public static void IncreaseResourceLevel(Constants.Resources resourceType)
    {
       if (PlayerResourcesList.Contains(resourceType) == false)
+      {
          PlayerResourcesList.Add(resourceType);
-      
+
+         var instance = Instantiate(ResourceDatas[resourceType].Object2Spawn);
+         ObjectPooler.InitializeNewPool(resourceType.ToString(), instance);
+      }
+
       ResourceDatas[resourceType].IncreaseResourceLevel();
    }
 }

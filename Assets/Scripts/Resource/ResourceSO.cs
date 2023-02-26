@@ -7,7 +7,10 @@ public class ResourceSO : ScriptableObject
 {
    public Constants.Resources resourceType;
    public GameObject object2Instantiate;
+   
    public int baseResourceLimit;
    public int resourceLimitIncrement;
    public int resource2XChanceIncrement;
+
+   public float resourceHealthAmount;
 }
