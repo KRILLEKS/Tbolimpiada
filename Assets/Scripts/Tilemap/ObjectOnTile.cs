@@ -1,36 +1,39 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
-public class ObjectOnTile : MonoBehaviour
+public class ObjectOnTile : PoolObject
 {
-   [HideInInspector] public GameObject GO;
-   [HideInInspector] public string PoolName;
-
-   internal HealthBarController _healthBarController;
+   internal HealthBarController HealthBarController;
 
    internal virtual void Awake()
    {
-      GO = gameObject;
-      _healthBarController = GO.GetComponentInChildren<HealthBarController>();
+      ObjectClass = this;
+      HealthBarController = gameObject.GetComponentInChildren<HealthBarController>();
+      
+      InitializeHealthBar();
+   }
+
+   public virtual void InitializeHealthBar()
+      => throw new WarningException("InitializeHealthBar method doesn't have implementation");
+
+   public override void ResetObject()
+   {
+      HealthBarController.ResetHealthBar();
+      HealthBarController.TurnOffHealthBar();
    }
 
    // returns true if object was destroyed
    public bool ReceiveDamage(float damage)
    {
-      return _healthBarController.ReceiveDamage(damage);
-   }
-
-   public void ResetObject()
-   {
-      _healthBarController.ResetHealthBar();
-      _healthBarController.TurnOffHealthBar();
+      return HealthBarController.ReceiveDamage(damage);
    }
 
    public void Return2Pool()
    {
       ObjectPooler.ReturnObject2Pool(PoolName, this);
-      TilemapHandler.ReleaseTile(GO.transform.position);
+      TilemapHandler.ReleaseTile(transform.position);
    }
 }

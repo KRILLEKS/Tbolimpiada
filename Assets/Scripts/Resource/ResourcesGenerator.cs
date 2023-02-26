@@ -42,9 +42,8 @@ public class ResourcesGenerator : MonoBehaviour
       var tileData = TilemapHandler.GetRandomEmptyTile();
       var poolObject = ObjectPooler.GetObjectFromPool(resource2Spawn.ToString());
       
-      poolObject.GO.transform.position = new Vector3(tileData.X + .5f, tileData.Y + .5f);
-      poolObject.GO.transform.parent = _commonFolder;
-
-      TilemapHandler.OccupyTile(tileData, poolObject);
+      poolObject.transform.position = new Vector3(tileData.X + .5f, tileData.Y + .5f);
+      poolObject.transform.parent = _commonFolder;
+      TilemapHandler.OccupyTile(tileData, poolObject.GetComponent<Resource>());
    }
 }

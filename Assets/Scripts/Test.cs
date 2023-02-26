@@ -7,13 +7,14 @@ using UnityEngine.Tilemaps;
 public class Test : MonoBehaviour
 {
    [SerializeField] private bool isEnabled;
-   [SerializeField] private Tilemap tilemap;
 
    private void Awake()
    {
-      if (isEnabled == false)
-         return;
-      
-      TilemapExtensionMethods.GetAllTiles(tilemap);
+      Debug.Log("Awake");
+   }
+
+   private void OnEnable()
+   {
+      Debug.Log("Enable");
    }
 }

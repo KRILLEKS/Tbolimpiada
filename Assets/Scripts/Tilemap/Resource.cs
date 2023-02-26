@@ -8,10 +8,8 @@ public class Resource : ObjectOnTile
 {
    [SerializeField] private Constants.Resources resourceType;
    
-   internal override void Awake()
+   public override void InitializeHealthBar()
    {
-      base.Awake();
-      
-      _healthBarController.InitializeHealthBar(this, ResourcesHandler.ResourceDatas[resourceType].ResourceMaxHealth);
+      HealthBarController.InitializeHealthBar(this, ResourcesHandler.ResourceDatas[resourceType].ResourceMaxHealth);
    }
 }
