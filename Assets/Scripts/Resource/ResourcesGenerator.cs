@@ -19,6 +19,14 @@ public class ResourcesGenerator : MonoBehaviour
       _commonFolder = folderSerializable;
    }
 
+   private void Start()
+   {
+      for (int i = 0; i < 100; i++)
+      {
+         SpawnResource(Constants.Resources.Wood);
+      }
+   }
+
    void Update()
    {
       if (toGenerateResources == false)
@@ -42,8 +50,9 @@ public class ResourcesGenerator : MonoBehaviour
       var tileData = TilemapHandler.GetRandomEmptyTile();
       var poolObject = ObjectPooler.GetObjectFromPool(resource2Spawn.ToString());
       
-      poolObject.transform.position = new Vector3(tileData.X + .5f, tileData.Y + .5f);
       poolObject.transform.parent = _commonFolder;
-      TilemapHandler.OccupyTile(tileData, poolObject.GetComponent<Resource>());
+      poolObject.SpriteRenderer.sortingOrder = -tileData.Y * 3 + 3;
+      poolObject.transform.position = new Vector3(tileData.X + .5f, tileData.Y + .5f, -1);
+      TilemapHandler.OccupyTile(tileData, poolObject as ObjectOnTile);
    }
 }

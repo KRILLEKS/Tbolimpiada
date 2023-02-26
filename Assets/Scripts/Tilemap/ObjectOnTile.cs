@@ -12,12 +12,15 @@ public class ObjectOnTile : PoolObject
    {
       ObjectClass = this;
       HealthBarController = gameObject.GetComponentInChildren<HealthBarController>();
-      
+
       InitializeHealthBar();
    }
 
    public virtual void InitializeHealthBar()
       => throw new WarningException("InitializeHealthBar method doesn't have implementation");
+
+   public virtual void OnObjectDestroy()
+      => throw new WarningException("OnObjectDestroy method doesn't have implementation");
 
    public override void ResetObject()
    {
@@ -28,7 +31,12 @@ public class ObjectOnTile : PoolObject
    // returns true if object was destroyed
    public bool ReceiveDamage(float damage)
    {
-      return HealthBarController.ReceiveDamage(damage);
+      bool objectWasDestroyed = HealthBarController.ReceiveDamage(damage);
+      
+      if (objectWasDestroyed)
+         OnObjectDestroy();
+      
+      return objectWasDestroyed;
    }
 
    public void Return2Pool()

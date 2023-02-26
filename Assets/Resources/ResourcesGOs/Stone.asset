@@ -18,3 +18,8 @@ MonoBehaviour:
   resourceLimitIncrement: 0
   resource2XChanceIncrement: 20
   resourceHealthAmount: 100
+  itemDrops:
+  - Item: {fileID: 4539961650990872950, guid: 78c8deb138b22e848bac08cf3224e968, type: 3}
+    DropChance: 0
+    MinAmount: 0
+    MaxAmount: 0

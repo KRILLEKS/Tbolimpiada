@@ -13,4 +13,6 @@ public class ResourceSO : ScriptableObject
    public int resource2XChanceIncrement;
 
    public float resourceHealthAmount;
+
+   public ItemDrop[] itemDrops;
 }

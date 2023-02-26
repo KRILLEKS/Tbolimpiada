@@ -34,6 +34,9 @@ public class ResourcesHandler : MonoBehaviour
 
          var instance = Instantiate(ResourceDatas[resourceType].Object2Spawn);
          ObjectPooler.InitializeNewPool(resourceType.ToString(), instance);
+
+         foreach (var itemDrop in ResourceDatas[resourceType].ItemDrops)
+            ObjectPooler.InitializeNewPool(itemDrop.Item.ToString(), itemDrop.Item);
       }
 
       ResourceDatas[resourceType].IncreaseResourceLevel();
