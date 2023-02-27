@@ -101,7 +101,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &667037965200594338
 Transform:
   m_ObjectHideFlags: 0
@@ -132,6 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PoolName: Log (UnityEngine.GameObject)
   ObjectClass: {fileID: 0}
+  SpriteRenderer: {fileID: 3056571860205318614}
   ItemType: 0
 --- !u!61 &7960776872451297611
 BoxCollider2D:
