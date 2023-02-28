@@ -12,7 +12,7 @@ public class Resource : ObjectOnTile
    
    public override void InitializeHealthBar()
    {
-      HealthBarController.InitializeHealthBar(this, ResourcesHandler.ResourceDatas[resourceType].ResourceMaxHealth);
+      ObjectHealthBarController.InitializeHealthBar(this, ResourcesHandler.ResourceDatas[resourceType].ResourceMaxHealth);
    }
 
    public override void OnObjectDestroy()

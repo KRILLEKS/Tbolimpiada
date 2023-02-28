@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 public class CursorHandler : MonoBehaviour
 {
    // we won't use camera.main in case we'll have multiple cameras
-   [SerializeField] private Camera camera;
+   [FormerlySerializedAs("camera"),SerializeField] private Camera mainCamera;
    [FormerlySerializedAs("objectSelectionCanvas"),SerializeField] private GameObject objectSelectionCanvasSerializable;
    
    public static ObjectOnTile SelectedObject;
@@ -22,7 +22,7 @@ public class CursorHandler : MonoBehaviour
 
    private void Update()
    {
-      var cursorWorldPos = camera.ScreenToWorldPoint(Input.MousePosition);
+      var cursorWorldPos = mainCamera.ScreenToWorldPoint(Input.MousePosition);
       Vector2Int tileUnderCursor = new Vector2Int(Mathf.FloorToInt(cursorWorldPos.x), Mathf.FloorToInt(cursorWorldPos.y));
 
       if (tileUnderCursor != _previousTileUnderCursor)

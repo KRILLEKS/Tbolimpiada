@@ -8,13 +8,8 @@ public class Test : MonoBehaviour
 {
    [SerializeField] private bool isEnabled;
 
-   private void Awake()
+   public void WriteInfo()
    {
-      Debug.Log("Awake");
-   }
-
-   private void OnEnable()
-   {
-      Debug.Log("Enable");
+      Debug.Log("Click");
    }
 }

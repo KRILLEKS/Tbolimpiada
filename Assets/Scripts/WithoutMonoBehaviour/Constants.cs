@@ -27,6 +27,23 @@ public class Constants
    
    public enum Items
    {
-      Log,
+      Log, // from wood - toBuild
+      Cone, // from wood - toEat
+      StoneShard, // from stone - toBuild
+      Diamond, // from stone - toBuild (very rare material)
+      Ferrum, // from ironOre - toBuild TODO: make smelting if have enough time so Steel can be made from ferrum and coal
+      Steel, // from ironOre - toBuild (rare material)
+      RedCrystal, // from crystal - forEssence
+      BlueCrystal, // from crystal - forEssence (more essence) (rare)
+      PurpleCrystal, // from crystal - forEssence (even more essence) (super rare)
+      Coal, // from coal - to build / cook TODO: make cooking if have enough time
+      Berry, // from berryBush - toEat
+      Flower, // from flowers - forEssence
+      Hardwood, // from hardwood - toBuild
+      Pumpkin, // from pumpkin - toEat
+      ObeliskShard, // from obelisk - toBuild
+      ObeliskCore, // from obelisk - forEssence (super rare)
+      Soul, // from soulShard - forEssence
+      PureSoul // from soulShard - toBuild / toEat (super rare)
    }
 }

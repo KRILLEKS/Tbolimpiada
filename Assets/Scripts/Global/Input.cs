@@ -28,10 +28,15 @@ public class Input : MonoBehaviour
    {
       _inputMap.Player.LeftClick.started += ctx => _isLeftClickBeingHeld = true;
       _inputMap.Player.LeftClick.canceled += ctx => _isLeftClickBeingHeld = false;
+
+      _inputMap.Player.OpenMainMenu.performed += ctx => MainUIController.SwitchMainMenuState();
    }
 
    private void Update()
    {
+      if (Time.timeScale == 0)
+         return;
+      
       MovementVector = _inputMap.Player.Move.ReadValue<Vector2>();
       MousePosition = UnityEngine.Input.mousePosition;
       

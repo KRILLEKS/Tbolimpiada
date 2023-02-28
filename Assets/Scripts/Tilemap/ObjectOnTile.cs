@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class ObjectOnTile : PoolObject
 {
-   internal HealthBarController HealthBarController;
+   internal ObjectHealthBarController ObjectHealthBarController;
 
    internal virtual void Awake()
    {
       ObjectClass = this;
-      HealthBarController = gameObject.GetComponentInChildren<HealthBarController>();
+      ObjectHealthBarController = gameObject.GetComponentInChildren<ObjectHealthBarController>();
 
       InitializeHealthBar();
    }
@@ -24,14 +24,14 @@ public class ObjectOnTile : PoolObject
 
    public override void ResetObject()
    {
-      HealthBarController.ResetHealthBar();
-      HealthBarController.TurnOffHealthBar();
+      ObjectHealthBarController.ResetHealthBar();
+      ObjectHealthBarController.TurnOffHealthBar();
    }
 
    // returns true if object was destroyed
    public bool ReceiveDamage(float damage)
    {
-      bool objectWasDestroyed = HealthBarController.ReceiveDamage(damage);
+      bool objectWasDestroyed = ObjectHealthBarController.ReceiveDamage(damage);
       
       if (objectWasDestroyed)
          OnObjectDestroy();

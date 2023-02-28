@@ -1,23 +1,30 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class Item : PoolObject
+public class Item
 {
-   public Constants.Items ItemType;
+   public GameObject ItemGO { private set; get; }
+   public Constants.Items ItemType { private set; get; }
+   public Sprite Sprite { private set; get; }
+   
+   public int EssenceGain { private set; get; }
+   
+   public bool IsConsumable { private set; get; }
+   public int HealthGain { private set; get; }
+   public int EnergyGain { private set; get; }
+   
 
-   public override void ResetObject()
+   public Item(ItemSO itemSo)
    {
-   }
+      ItemGO = itemSo.ItemGO;
+      ItemType = ItemGO.GetComponent<ItemOnTheGround>().ItemType;
+      Sprite = ItemGO.transform.Find("Texture").GetComponent<SpriteRenderer>().sprite;
 
-   private void OnTriggerEnter2D(Collider2D colliderInfo)
-   {
-      if (colliderInfo.CompareTag("Player") == false)
-         return;
-
-      PlayerInventory.AddItem2Dictionary(ItemType);
-      ObjectPooler.ReturnObject2Pool(PoolName, this);
+      IsConsumable = itemSo.IsConsumable;
+      
+      EssenceGain = itemSo.EssenceGain;
+      HealthGain = itemSo.HealthGain;
+      EnergyGain = itemSo.EnergyGain;
    }
 }
