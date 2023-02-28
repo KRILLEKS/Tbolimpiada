@@ -11,5 +11,6 @@ public class PoolObject : MonoBehaviour
    [HideInInspector] public SpriteRenderer SpriteRenderer; // needs to set order in layer
 
    public virtual void ResetObject()
-      => throw new WarningException("ResetObject method doesn't have implementation");
+   {
+   }
 }

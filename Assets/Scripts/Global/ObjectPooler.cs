@@ -14,9 +14,8 @@ public static class ObjectPooler
       _poolDictionary.Add(poolName, new Queue<PoolObject>());
 
       var poolObj = poolGO.GetComponent<PoolObject>();
-      Debug.Log(poolObj);
       poolObj.PoolName = poolName;
-      poolObj.SpriteRenderer = poolObj.transform.Find("Texture").GetComponent<SpriteRenderer>();
+      poolObj.SpriteRenderer = poolObj.transform.Find("Texture")?.GetComponent<SpriteRenderer>();
       _poolDictionary[poolName].Enqueue(poolGO.GetComponent<PoolObject>());
       
       poolGO.SetActive(false);

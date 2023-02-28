@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerAttackController : MonoBehaviour
@@ -27,10 +28,7 @@ public class PlayerAttackController : MonoBehaviour
 
       _lastAttackTime = Time.time;
       PlayerAnimatorController.SetAttackAnimation();
-      // TODO: mb scale attack
-      // if object was destroyed after attack then we turn off selection
-      if (CursorHandler.SelectedObject.ReceiveDamage(10))
-         CursorHandler.TurnOffSelection();
+      PlayerSphereController.Fly2Object(10);
 
       PlayerEnergyController.SpendEnergy(1);
    }

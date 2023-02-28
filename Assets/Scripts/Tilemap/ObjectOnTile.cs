@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
+using Object = System.Object;
 
 public class ObjectOnTile : PoolObject
 {
