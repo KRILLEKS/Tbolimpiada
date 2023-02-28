@@ -11,12 +11,14 @@ public class MainUIController : MonoBehaviour
 {
    [Header("Essentials")]
    [SerializeField] private GameObject mainUICanvasSerializable;
+   [SerializeField] private GameObject overlayCanvasSerializable;
    [SerializeField] private float blurFadeInTimeSerializable; // in seconds
    [Header("Color")]
    [SerializeField] private Color activeTabColorSerializable;
    [SerializeField] private Color inactiveTabColorSerializable;
 
    private static GameObject _mainUICanvas;
+   private static GameObject _overlayCanvas;
    private static float _blurFadeInTime;
    private static Color _activeTabColor;
    private static Color _inactiveTabColor;
@@ -39,6 +41,7 @@ public class MainUIController : MonoBehaviour
    private void Awake()
    {
       _mainUICanvas = mainUICanvasSerializable;
+      _overlayCanvas = overlayCanvasSerializable;
       _blurFadeInTime = blurFadeInTimeSerializable;
       _activeTabColor = activeTabColorSerializable;
       _inactiveTabColor = inactiveTabColorSerializable;
@@ -47,6 +50,7 @@ public class MainUIController : MonoBehaviour
       var tabsArray = Enum.GetValues(typeof (Tabs)).Cast<Tabs>().ToArray(); // for SetButtons and FillTabsArray methods
       SetButtons();
       FillTabsDictionary();
+      InitializeTabsControllers();
 
       _blurAlpha = _blurRawImage.color.a;
       _blurStartColor = new Color(_blurRawImage.color.r, _blurRawImage.color.g, _blurRawImage.color.b, 0);
@@ -92,6 +96,10 @@ public class MainUIController : MonoBehaviour
             }
          }
       }
+      void InitializeTabsControllers()
+      {
+         InventoryUIHandler.InitializeController(_tabs[Tabs.Inventory].transform);
+      }
    }
 
    public static void SwitchMainMenuState()
@@ -100,17 +108,28 @@ public class MainUIController : MonoBehaviour
       if (_mainUICanvas.activeSelf)
       {
          _blurRawImage.DOKill();
+         
          _mainUICanvas.SetActive(false);
+         _overlayCanvas.SetActive(true);
       }
       // enable
       else
       {
          _mainUICanvas.SetActive(true);
+         _overlayCanvas.SetActive(false);
+         
          _blurRawImage.color = _blurStartColor;
          _blurRawImage.DOFade(_blurAlpha, _blurFadeInTime).SetUpdate(true);
+         
+         UpdateAllMenusInfo();
       }
 
       TimeController.SwitchTimeState();
+
+      void UpdateAllMenusInfo()
+      {
+         InventoryUIHandler.UpdateInventoryInfo();
+      }
    }
 
    private void SetTab(Tabs tab2Set)

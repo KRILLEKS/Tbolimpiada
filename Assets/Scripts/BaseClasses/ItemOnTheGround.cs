@@ -12,12 +12,12 @@ public class ItemOnTheGround : PoolObject
    {
    }
 
-   private void OnTriggerEnter2D(Collider2D colliderInfo)
+   private void OnTriggerStay2D(Collider2D colliderInfo)
    {
       if (colliderInfo.CompareTag("Player") == false)
          return;
 
-      PlayerInventory.AddItem2Dictionary(ItemType);
-      ObjectPooler.ReturnObject2Pool(PoolName, this);
+      if (InventoryHandler.AddItem2Dictionary(ItemType))
+         ObjectPooler.ReturnObject2Pool(PoolName, this);
    }
 }

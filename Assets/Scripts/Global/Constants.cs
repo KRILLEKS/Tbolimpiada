@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Constants
 {
+   public const float InventorySelectedItemMenuAppearTime = .42f;
+   public const float InventorySelectedItemMenuItemChangeTime = .6f;
+   
+   public const int InventoryMaxItemsAmount = 12;
+   
    public const float ItemDropXMin = -0.5f;
    public const float ItemDropXMax = 0.5f;
    public const float ItemDropYMin = 0.5f;

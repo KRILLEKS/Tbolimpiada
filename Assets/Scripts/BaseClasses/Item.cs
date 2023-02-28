@@ -5,6 +5,7 @@ using UnityEngine;
 public class Item
 {
    public GameObject ItemGO { private set; get; }
+   public string Description { private set; get; }
    public Constants.Items ItemType { private set; get; }
    public Sprite Sprite { private set; get; }
    
@@ -18,6 +19,7 @@ public class Item
    public Item(ItemSO itemSo)
    {
       ItemGO = itemSo.ItemGO;
+      Description = itemSo.Description;
       ItemType = ItemGO.GetComponent<ItemOnTheGround>().ItemType;
       Sprite = ItemGO.transform.Find("Texture").GetComponent<SpriteRenderer>().sprite;
 

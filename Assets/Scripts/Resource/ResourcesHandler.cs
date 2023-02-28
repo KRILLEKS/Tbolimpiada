@@ -36,7 +36,7 @@ public class ResourcesHandler : MonoBehaviour
          ObjectPooler.InitializeNewPool(resourceType.ToString(), instance);
 
          foreach (var itemDrop in ResourceDatas[resourceType].ItemDrops)
-            ObjectPooler.InitializeNewPool(itemDrop.Item.ToString(), itemDrop.Item);
+            ObjectPooler.InitializeNewPool(itemDrop.Item.ToString(), ItemsHandler.GetItem(itemDrop.Item).ItemGO);
       }
 
       ResourceDatas[resourceType].IncreaseResourceLevel();

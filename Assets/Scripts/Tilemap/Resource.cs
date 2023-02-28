@@ -34,7 +34,7 @@ public class Resource : ObjectOnTile
       
       foreach (var ItemDropInfo in ResourcesHandler.ResourceDatas[resourceType].ItemDrops)
       {
-         var poolName = ItemDropInfo.Item.gameObject.ToString();
+         var poolName = ItemDropInfo.Item.ToString();
          for (int i = 0; i < ItemDropInfo.MinAmount; i++)
             dropList.Add(poolName);
 
