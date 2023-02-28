@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Constants
 {
-   public const float InventorySelectedItemMenuAppearTime = .42f;
-   public const float InventorySelectedItemMenuItemChangeTime = .6f;
-   
+   public const int PlayerMaxHealth = 1000;
+   public const int PlayerMaxEnergy = 100;
+
    public const int InventoryMaxItemsAmount = 12;
    
    public const float ItemDropXMin = -0.5f;

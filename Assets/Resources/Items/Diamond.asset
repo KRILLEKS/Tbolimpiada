@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Diamond
   m_EditorClassIdentifier: 
   ItemGO: {fileID: 4539961650990872950, guid: 99f7f2c41e4a53244b5ea01356791461, type: 3}
-  Description: Shiny!!!!
-  EssenceGain: 0
-  IsConsumable: 0
-  HealthGain: 0
-  EnergyGain: 0
+  Description: Shiny!!!! You can restore your sphere with it
+  EssenceGain: 20
+  IsConsumable: 1
+  HealthGain: 250
+  EnergyGain: 5

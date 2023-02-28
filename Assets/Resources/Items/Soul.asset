@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemGO: {fileID: 4539961650990872950, guid: 6c0af4663e4e23c4a9e1664272e3213f, type: 3}
   Description: Who did it belong to in the past?
-  EssenceGain: 0
+  EssenceGain: 4
   IsConsumable: 0
   HealthGain: 0
   EnergyGain: 0

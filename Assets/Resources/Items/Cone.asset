@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Cone
   m_EditorClassIdentifier: 
   ItemGO: {fileID: 4539961650990872950, guid: 8f38ac78b23706b4094af8808f428d4c, type: 3}
-  Description: You can eat it. As a kast resort
-  EssenceGain: 0
+  Description: You can eat it. As a last resort
+  EssenceGain: 4
   IsConsumable: 1
-  HealthGain: 0
-  EnergyGain: 0
+  HealthGain: 15
+  EnergyGain: 15

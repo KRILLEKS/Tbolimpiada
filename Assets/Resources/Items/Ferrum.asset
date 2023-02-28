@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemGO: {fileID: 4539961650990872950, guid: faffd2e2e36febb4d92102a512b1836f, type: 3}
   Description: I heard it something from chemistry
-  EssenceGain: 0
+  EssenceGain: 2
   IsConsumable: 0
   HealthGain: 0
   EnergyGain: 0

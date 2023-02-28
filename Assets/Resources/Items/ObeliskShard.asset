@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemGO: {fileID: 4539961650990872950, guid: 6eb444018fb7cb6469c736a570790165, type: 3}
   Description: That thing dropped from the obelisk
-  EssenceGain: 0
+  EssenceGain: 6
   IsConsumable: 0
   HealthGain: 0
   EnergyGain: 0

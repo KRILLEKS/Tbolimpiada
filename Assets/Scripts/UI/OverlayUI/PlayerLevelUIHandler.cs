@@ -5,17 +5,15 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerLevelUIHandler : MonoBehaviour
+public class PlayerLevelUIHandler
 {
-    [SerializeField] private GameObject levelUIFolderSerializable;
-
     private static Image _fillerImage;
     private static TextMeshProUGUI _textMeshProUGUI;
 
-    private void Awake()
+    public static void Initialize(Transform levelUIFolder)
     {
-        _fillerImage = levelUIFolderSerializable.transform.Find("Filler").GetComponent<Image>();
-        _textMeshProUGUI = levelUIFolderSerializable.GetComponentInChildren<TextMeshProUGUI>();
+        _fillerImage = levelUIFolder.transform.Find("Filler").GetComponent<Image>();
+        _textMeshProUGUI = levelUIFolder.GetComponentInChildren<TextMeshProUGUI>();
     }
 
     public static void UpdateLevelUIInfo(int currentEssenceAmount, int levelUpEssenceAmount, int currentLevel)

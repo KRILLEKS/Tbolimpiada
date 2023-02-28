@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemGO: {fileID: 4539961650990872950, guid: d483ce5ecef03374490971c02d389b0c, type: 3}
   Description: Feels a lot of essence inside
-  EssenceGain: 0
+  EssenceGain: 6
   IsConsumable: 0
   HealthGain: 0
   EnergyGain: 0

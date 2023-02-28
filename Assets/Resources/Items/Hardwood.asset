@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemGO: {fileID: 4539961650990872950, guid: 395846dd7d69ee142bac602c739d8a03, type: 3}
   Description: 'An unimaginably solid piece of wood. Can become in handy '
-  EssenceGain: 0
+  EssenceGain: 3
   IsConsumable: 0
   HealthGain: 0
   EnergyGain: 0

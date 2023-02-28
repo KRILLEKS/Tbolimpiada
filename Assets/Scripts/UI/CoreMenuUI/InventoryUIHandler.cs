@@ -193,22 +193,22 @@ public class InventoryUIHandler
          _infoMenuGO.SetActive(true);
          SetItemInfo();
 
-         _itemSlotsRectTransform.DOAnchorPos(new Vector2(-235, 0), Constants.InventorySelectedItemMenuAppearTime).SetUpdate(true).SetEase(Ease.OutQuart);
+         _itemSlotsRectTransform.DOAnchorPos(new Vector2(-235, 0), UIConstants.InventorySelectedItemMenuAppearTime).SetUpdate(true).SetEase(Ease.OutQuart);
 
          _infoMenuRectTransform.anchoredPosition = new Vector2(_infoMenuAnchoredPos.x - 200f, _infoMenuRectTransform.anchoredPosition.y);
-         _infoMenuRectTransform.DOAnchorPos(_infoMenuAnchoredPos, Constants.InventorySelectedItemMenuAppearTime).SetUpdate(true).SetEase(Ease.OutQuart);
+         _infoMenuRectTransform.DOAnchorPos(_infoMenuAnchoredPos, UIConstants.InventorySelectedItemMenuAppearTime).SetUpdate(true).SetEase(Ease.OutQuart);
          _infoMenuHoleCanvasGroup.alpha = 0;
-         _infoMenuHoleCanvasGroup.DOFade(1, Constants.InventorySelectedItemMenuAppearTime / 1.5f).SetUpdate(true);
+         _infoMenuHoleCanvasGroup.DOFade(1, UIConstants.InventorySelectedItemMenuAppearTime / 1.5f).SetUpdate(true);
       }
       // change selected item
       else
       {
-         _infoMenuInfoCanvasGroup.DOFade(0, Constants.InventorySelectedItemMenuItemChangeTime / 2)
+         _infoMenuInfoCanvasGroup.DOFade(0, UIConstants.InventorySelectedItemMenuItemChangeTime / 2)
                                  .SetUpdate(true)
                                  .OnComplete(() =>
                                  {
                                     SetItemInfo();
-                                    _infoMenuInfoCanvasGroup.DOFade(1, Constants.InventorySelectedItemMenuItemChangeTime / 2).SetUpdate(true);
+                                    _infoMenuInfoCanvasGroup.DOFade(1, UIConstants.InventorySelectedItemMenuItemChangeTime / 2).SetUpdate(true);
                                  });
       }
 

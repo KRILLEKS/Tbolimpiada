@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemGO: {fileID: 4539961650990872950, guid: b88a1cdf13dd67a4ebb6194aaffa413d, type: 3}
   Description: Little juicy berry. Nice to eat some of them after a hard day
-  EssenceGain: 0
+  EssenceGain: 1
   IsConsumable: 1
-  HealthGain: 0
-  EnergyGain: 0
+  HealthGain: 5
+  EnergyGain: 5

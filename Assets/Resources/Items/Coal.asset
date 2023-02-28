@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemGO: {fileID: 4539961650990872950, guid: 150bc007a3a1e814eb023278dc860be1, type: 3}
   Description: A chunk of coal. Very versatile resource
-  EssenceGain: 0
+  EssenceGain: 3
   IsConsumable: 0
   HealthGain: 0
   EnergyGain: 0

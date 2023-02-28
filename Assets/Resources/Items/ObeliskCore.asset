@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemGO: {fileID: 4539961650990872950, guid: 38b0a6b809b4ca345b3d440d39aa2660, type: 3}
   Description: Looks very ancient although very well preserved
-  EssenceGain: 0
+  EssenceGain: 20
   IsConsumable: 0
   HealthGain: 0
   EnergyGain: 0

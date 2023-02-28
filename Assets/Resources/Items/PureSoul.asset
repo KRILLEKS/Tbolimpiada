@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PureSoul
   m_EditorClassIdentifier: 
   ItemGO: {fileID: 4539961650990872950, guid: 817d8f485a586bc47becaabfcccc10b8, type: 3}
-  Description: Untouched soul. You can consume it to heal all your wounds
-  EssenceGain: 0
+  Description: Untouched soul. You can consume it if you dare
+  EssenceGain: 25
   IsConsumable: 1
-  HealthGain: 10
+  HealthGain: 50
   EnergyGain: 100

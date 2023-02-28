@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemGO: {fileID: 4539961650990872950, guid: f112c220a76acd24b821e3d39a6bec7a, type: 3}
   Description: Just a piece of stone you just cruelly broke
-  EssenceGain: 0
+  EssenceGain: 1
   IsConsumable: 0
   HealthGain: 0
   EnergyGain: 0

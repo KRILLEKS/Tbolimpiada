@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemGO: {fileID: 4539961650990872950, guid: 42a7ce97dbba69249b0b7f59bfc20e66, type: 3}
   Description: 'This crystal is literally overflowing with energy '
-  EssenceGain: 0
+  EssenceGain: 15
   IsConsumable: 0
   HealthGain: 0
   EnergyGain: 0

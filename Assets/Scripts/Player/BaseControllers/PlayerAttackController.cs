@@ -7,7 +7,7 @@ public class PlayerAttackController : MonoBehaviour
 {
    [SerializeField] private float attackRateSerializable; // attacks per second
 
-   private static float _attackRate;
+   private static float _attackRate; // attacks per second
    private static float _lastAttackTime;
    
    private void Awake()
@@ -15,18 +15,23 @@ public class PlayerAttackController : MonoBehaviour
       _attackRate = attackRateSerializable;
       
       Input.InvokeOnLeftClickRepeating.AddListener(PerformAttack);
+
+      _lastAttackTime = float.MinValue;
    }
 
    public static void PerformAttack()
    {
-      if ((Time.time > _lastAttackTime + (1f/_attackRate)) == false || CursorHandler.SelectedObject == null)
+      if (CursorHandler.SelectedObject == null ||
+          Time.time < _lastAttackTime + 1f/(PlayerEnergyController.CurrentEnergyAmount > 0 ? _attackRate : (_attackRate / 2)))
          return;
 
       _lastAttackTime = Time.time;
       PlayerAnimatorController.SetAttackAnimation();
-      // TODO: scale attack
+      // TODO: mb scale attack
       // if object was destroyed after attack then we turn off selection
       if (CursorHandler.SelectedObject.ReceiveDamage(10))
          CursorHandler.TurnOffSelection();
+
+      PlayerEnergyController.SpendEnergy(1);
    }
 }

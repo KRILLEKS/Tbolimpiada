@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemGO: {fileID: 4539961650990872950, guid: 0b83e9c37ff7c2641a1b555d264d991e, type: 3}
   Description: Looks like tulip. Maybe it's not
-  EssenceGain: 0
+  EssenceGain: 2
   IsConsumable: 0
   HealthGain: 0
   EnergyGain: 0

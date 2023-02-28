@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemGO: {fileID: 4539961650990872950, guid: 78c8deb138b22e848bac08cf3224e968, type: 3}
   Description: Just a log. Nice one log.
-  EssenceGain: 0
+  EssenceGain: 1
   IsConsumable: 0
   HealthGain: 0
   EnergyGain: 0

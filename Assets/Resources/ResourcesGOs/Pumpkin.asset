@@ -15,6 +15,11 @@ MonoBehaviour:
   resourceType: 8
   object2Instantiate: {fileID: 7528986910941888586, guid: b819a08aebc0daa49ad49cf7468e0223, type: 3}
   baseResourceLimit: 20
-  resourceLimitIncrement: 0
-  resource2XChanceIncrement: 0
-  resourceHealthAmount: 100
+  resourceLimitIncrement: 10
+  resource2XChanceIncrement: 5
+  resourceHealthAmount: 40
+  itemDrops:
+  - Item: 13
+    DropChance: 0.4
+    MinAmount: 1
+    MaxAmount: 3

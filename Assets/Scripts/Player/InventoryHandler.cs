@@ -12,7 +12,7 @@ public class InventoryHandler
    public static bool AddItem2Dictionary(Constants.Items item2Add)
    {
       // inventory is full
-      if (_inventoryDictionary.Count > Constants.InventoryMaxItemsAmount)
+      if (_inventoryDictionary.ContainsKey(item2Add) == false && _inventoryDictionary.Count >= Constants.InventoryMaxItemsAmount)
       {
          Debug.Log("Inventory is full");
          return false;
