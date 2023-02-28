@@ -12,12 +12,12 @@ public class InventoryUIHandler
    private static RectTransform _itemSlotsRectTransform;
    private static ItemSlot[] _itemSlots;
 
-   private static Texture _inactiveTabTexture;
-   private static Texture _activeTabTexture;
+   private static Texture _inactiveSlotTexture;
+   private static Texture _activeSlotTexture;
 
-   private static int _currentActiveMenu = -1;
+   private static int _currentItemSlotIndex = -1;
    // long names were made to simplify work with fields.
-   // So each infoMenu field starts with "infoMenu" and eacg infoMenu value field starts from "selectedItem" 
+   // So each infoMenu field starts with "infoMenu" and each infoMenu value field starts from "selectedItem" 
    // selected item menu
    private static GameObject _infoMenuGO;
    private static RectTransform _infoMenuRectTransform;
@@ -28,6 +28,9 @@ public class InventoryUIHandler
    private static TextMeshProUGUI _selectedItemName;
    private static TextMeshProUGUI _selectedItemDescriptionTMP;
    private static GameObject _selectedItemEatButtonGO; // must be disabled if object isn't consumable
+   private static TextMeshProUGUI _selectedItemDestroyButtonTMP;
+   private static float _currentAmount2DestroySliderValue;
+   private static int _currentAmount2Destroy;
    // item values
    private static GameObject _selectedItemFoodFolderGO; // must be disabled if object isn't consumable
    private static TextMeshProUGUI _selectedItemFoodAmountTMP;
@@ -73,6 +76,13 @@ public class InventoryUIHandler
          {
             _itemAmount = value;
             ItemAmountTMP.text = value.ToString();
+            
+            if (value == 0)
+            {
+               ItemAmountGO.SetActive(false);
+               ItemIconRawImage.gameObject.SetActive(false);
+               ItemSlotRawImage.texture = _inactiveSlotTexture;
+            }
          }
          get
          {
@@ -88,15 +98,14 @@ public class InventoryUIHandler
 
    public static void InitializeController(Transform inventoryFolderTransform)
    {
-      _inactiveTabTexture = Resources.Load<Texture2D>("UI/Inventory/InactiveItemSlot");
-      _activeTabTexture = Resources.Load<Texture2D>("UI/Inventory/ActiveItemSlot");
+      _inactiveSlotTexture = Resources.Load<Texture2D>("UI/Inventory/InactiveItemSlot");
+      _activeSlotTexture = Resources.Load<Texture2D>("UI/Inventory/ActiveItemSlot");
 
       var itemSlotsFolder = inventoryFolderTransform.Find("ItemSlots");
       _itemSlotsRectTransform = itemSlotsFolder.GetComponent<RectTransform>();
 
       InitializeItemSlotsArray();
       InitializeSelectedItemMenu();
-
 
       void InitializeItemSlotsArray()
       {
@@ -105,26 +114,37 @@ public class InventoryUIHandler
          {
             _itemSlots[i] = new ItemSlot(itemSlotsFolder.GetChild(i));
 
-            _itemSlots[i].ItemSlotRawImage.texture = _inactiveTabTexture;
+            _itemSlots[i].ItemSlotRawImage.texture = _inactiveSlotTexture;
 
             var index = i;
             itemSlotsFolder.GetChild(i).GetComponent<Button>().onClick.AddListener(() => SetActiveMenu(index));
          }
       }
+
       void InitializeSelectedItemMenu()
       {
          var selectedItemMenuTransform = inventoryFolderTransform.Find("SelectedItemMenu");
 
+         // set info menu fields
          _infoMenuGO = selectedItemMenuTransform.gameObject;
          _infoMenuRectTransform = _infoMenuGO.GetComponent<RectTransform>();
          _infoMenuAnchoredPos = _infoMenuRectTransform.anchoredPosition;
          _infoMenuHoleCanvasGroup = _infoMenuRectTransform.GetComponent<CanvasGroup>();
          _infoMenuInfoCanvasGroup = _infoMenuRectTransform.Find("CanvasGroup").GetComponent<CanvasGroup>();
+
+         // set info menu values fields
          var selectedItemMenuInfoFolder = _infoMenuInfoCanvasGroup.transform;
          _selectedItemIconRawImage = selectedItemMenuInfoFolder.Find("Icon").GetComponent<RawImage>();
          _selectedItemName = selectedItemMenuInfoFolder.Find("ItemName").GetComponent<TextMeshProUGUI>();
          _selectedItemDescriptionTMP = selectedItemMenuInfoFolder.Find("Description").GetComponent<TextMeshProUGUI>();
          _selectedItemEatButtonGO = selectedItemMenuInfoFolder.Find("Buttons").Find("Eat").gameObject;
+         _selectedItemDestroyButtonTMP = selectedItemMenuInfoFolder.Find("Buttons").Find("Destroy").Find("Text").GetComponent<TextMeshProUGUI>();
+
+         // set listeners
+         _selectedItemEatButtonGO.GetComponent<Button>().onClick.AddListener(EatButton);
+         selectedItemMenuInfoFolder.Find("Amount2Destroy").GetComponent<Slider>().onValueChanged.AddListener(SetAmount2Destroy);
+         selectedItemMenuInfoFolder.Find("Buttons").Find("Destroy").GetComponent<Button>().onClick.AddListener(Destroy);
+
          // item values
          var consumeBenefitsFolder = selectedItemMenuInfoFolder.Find("ConsumeBenefits");
          _selectedItemFoodFolderGO = consumeBenefitsFolder.Find("Food").gameObject;
@@ -135,13 +155,62 @@ public class InventoryUIHandler
       }
    }
 
+   private static void EatButton()
+   {
+      InventoryHandler.EatItem(_itemSlots[_currentItemSlotIndex].Item.ItemType);
+
+      GetRidOfItem(1);
+   }
+
+   private static void Destroy()
+   {
+      InventoryHandler.DestroyItem(_itemSlots[_currentItemSlotIndex].Item.ItemType, _currentAmount2Destroy);
+
+      GetRidOfItem(_currentAmount2Destroy);
+   }
+
+   private static void GetRidOfItem(int amount)
+   {
+      _itemSlots[_currentItemSlotIndex].ItemAmount -= amount;
+
+      if (_itemSlots[_currentItemSlotIndex].ItemAmount == 0)
+      {
+         _itemSlots[_currentItemSlotIndex].Item = null;
+         
+         _itemSlotsRectTransform.DOAnchorPos(new Vector2(0, 0), UIConstants.InventorySelectedItemMenuAppearTime).SetUpdate(true).SetEase(Ease.OutQuart);
+
+         _infoMenuRectTransform
+            .DOAnchorPos(new Vector2(_infoMenuAnchoredPos.x - 200f, _infoMenuRectTransform.anchoredPosition.y), UIConstants.InventorySelectedItemMenuAppearTime)
+            .SetUpdate(true)
+            .SetEase(Ease.OutQuart);
+         
+         _infoMenuHoleCanvasGroup.DOFade(0, UIConstants.InventorySelectedItemMenuAppearTime / 1.5f).SetUpdate(true).OnComplete(() =>
+         {
+            _infoMenuGO.SetActive(false);
+         });
+      }
+      else
+         SetAmount2Destroy(_currentAmount2DestroySliderValue);
+   }
+
+   private static void SetAmount2Destroy(float sliderValue)
+   {
+      _currentAmount2DestroySliderValue = sliderValue;
+      _currentAmount2Destroy = Mathf.RoundToInt(sliderValue * _itemSlots[_currentItemSlotIndex].ItemAmount);
+
+      if (_currentAmount2Destroy == 0)
+         _currentAmount2Destroy = 1;
+
+      _selectedItemDestroyButtonTMP.text = $"Destroy x{_currentAmount2Destroy}";
+   }
+
    public static void UpdateInventoryInfo()
    {
       // essentials
-      if (_currentActiveMenu != -1)
+      if (_currentItemSlotIndex != -1)
       {
-         _itemSlots[_currentActiveMenu].ItemSlotRawImage.texture = _inactiveTabTexture;
-         _currentActiveMenu = -1;
+         _itemSlots[_currentItemSlotIndex].ItemSlotRawImage.texture = _inactiveSlotTexture;
+         _currentItemSlotIndex = -1;
       }
 
       _itemSlotsRectTransform.anchoredPosition = Vector2.zero;
@@ -151,6 +220,9 @@ public class InventoryUIHandler
       var index = 0;
       foreach (var item in InventoryHandler.GetInventoryDictionary())
       {
+         if (item.Value == 0)
+            continue;
+
          if (_itemSlots[index].ItemIconRawImage.gameObject.activeSelf == false)
          {
             _itemSlots[index].ItemIconRawImage.gameObject.SetActive(true);
@@ -181,11 +253,11 @@ public class InventoryUIHandler
       if (_itemSlots[menuIndex].Item == null)
          return;
 
-      if (_currentActiveMenu != -1)
-         _itemSlots[_currentActiveMenu].ItemSlotRawImage.texture = _inactiveTabTexture;
+      if (_currentItemSlotIndex != -1)
+         _itemSlots[_currentItemSlotIndex].ItemSlotRawImage.texture = _inactiveSlotTexture;
 
-      _currentActiveMenu = menuIndex;
-      _itemSlots[_currentActiveMenu].ItemSlotRawImage.texture = _activeTabTexture;
+      _currentItemSlotIndex = menuIndex;
+      _itemSlots[_currentItemSlotIndex].ItemSlotRawImage.texture = _activeSlotTexture;
 
       // fade in selected item menu
       if (_infoMenuGO.activeSelf == false)
@@ -211,6 +283,8 @@ public class InventoryUIHandler
                                     _infoMenuInfoCanvasGroup.DOFade(1, UIConstants.InventorySelectedItemMenuItemChangeTime / 2).SetUpdate(true);
                                  });
       }
+
+      SetAmount2Destroy(_currentAmount2DestroySliderValue);
 
       void SetItemInfo()
       {

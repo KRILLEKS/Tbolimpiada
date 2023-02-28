@@ -31,4 +31,28 @@ public class InventoryHandler
    {
       return new (_inventoryDictionary);
    }
+
+   public static void EatItem(Constants.Items itemType)
+   {
+      GetRidOfItem(itemType,1);
+
+      var item = ItemsHandler.GetItem(itemType);
+      PlayerEnergyController.AddEnergy(item.EnergyGain);
+      PlayerHealthController.AddHealth(item.HealthGain);
+   }
+
+   public static void DestroyItem(Constants.Items itemType, int amount)
+   {
+      GetRidOfItem(itemType, amount);
+      
+      PlayerLevelHandler.AddEssence(ItemsHandler.GetItem(itemType).EssenceGain * amount);
+   }
+
+   private static void GetRidOfItem(Constants.Items itemType, int amount)
+   {
+      _inventoryDictionary[itemType] -= amount;
+
+      if (_inventoryDictionary[itemType] == 0)
+         _inventoryDictionary.Remove(itemType);
+   }
 }

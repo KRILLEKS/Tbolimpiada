@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7378f7d9bc88ff41ae1d9926d6acf33, type: 3}
-  m_Name: Pumpkin
+  m_Name: WorldPumpkin
   m_EditorClassIdentifier: 
   resourceType: 8
   object2Instantiate: {fileID: 7528986910941888586, guid: b819a08aebc0daa49ad49cf7468e0223, type: 3}

@@ -33,7 +33,7 @@ public class PlayerLevelHandler : MonoBehaviour
       _currentEssenceAmount += amount;
 
       // level up
-      if (_currentEssenceAmount >= _essence2NextLevelUp)
+      while (_currentEssenceAmount >= _essence2NextLevelUp)
       {
          _currentEssenceAmount -= _essence2NextLevelUp;
          _essence2NextLevelUp = Mathf.FloorToInt(_essence2NextLevelUp * (1 + _essenceIncrement2LevelUp));

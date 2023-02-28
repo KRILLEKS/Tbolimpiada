@@ -17,13 +17,13 @@ public class ResourcesHandler : MonoBehaviour
 
       IncreaseResourceLevel(Constants.Resources.Wood);
       IncreaseResourceLevel(Constants.Resources.Stone);
-      // IncreaseResourceLevel(Constants.Resources.Obelisk);
-      // IncreaseResourceLevel(Constants.Resources.BerryBush);
-      // IncreaseResourceLevel(Constants.Resources.Coal);
-      // IncreaseResourceLevel(Constants.Resources.IronOre);
-      // IncreaseResourceLevel(Constants.Resources.Pumpkin);
-      // IncreaseResourceLevel(Constants.Resources.Flowers);
-      // IncreaseResourceLevel(Constants.Resources.Hardwood);
+      IncreaseResourceLevel(Constants.Resources.Obelisk);
+      IncreaseResourceLevel(Constants.Resources.BerryBush);
+      IncreaseResourceLevel(Constants.Resources.Coal);
+      IncreaseResourceLevel(Constants.Resources.IronOre);
+      IncreaseResourceLevel(Constants.Resources.Pumpkin);
+      IncreaseResourceLevel(Constants.Resources.Flowers);
+      IncreaseResourceLevel(Constants.Resources.Hardwood);
    }
 
    public static void IncreaseResourceLevel(Constants.Resources resourceType)
@@ -33,7 +33,7 @@ public class ResourcesHandler : MonoBehaviour
          PlayerResourcesList.Add(resourceType);
 
          var instance = Instantiate(ResourceDatas[resourceType].Object2Spawn);
-         ObjectPooler.InitializeNewPool(resourceType.ToString(), instance);
+         ObjectPooler.InitializeNewPool("resource_"+resourceType, instance);
 
          foreach (var itemDrop in ResourceDatas[resourceType].ItemDrops)
             ObjectPooler.InitializeNewPool(itemDrop.Item.ToString(), ItemsHandler.GetItem(itemDrop.Item).ItemGO);

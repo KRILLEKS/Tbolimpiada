@@ -48,7 +48,7 @@ public class ResourcesGenerator : MonoBehaviour
          return;
 
       var tileData = TilemapHandler.GetRandomEmptyTile();
-      var poolObject = ObjectPooler.GetObjectFromPool(resource2Spawn.ToString());
+      var poolObject = ObjectPooler.GetObjectFromPool("resource_"+resource2Spawn);
       
       poolObject.transform.parent = _commonFolder;
       poolObject.SpriteRenderer.sortingOrder = -tileData.Y * 3 + 3;

@@ -14,6 +14,8 @@ public class Item
    public bool IsConsumable { private set; get; }
    public int HealthGain { private set; get; }
    public int EnergyGain { private set; get; }
+
+   public string PoolName { private set; get; }
    
 
    public Item(ItemSO itemSo)
@@ -21,6 +23,7 @@ public class Item
       ItemGO = itemSo.ItemGO;
       Description = itemSo.Description;
       ItemType = ItemGO.GetComponent<ItemOnTheGround>().ItemType;
+      PoolName = ItemGO.GetComponent<ItemOnTheGround>().PoolName;
       Sprite = ItemGO.transform.Find("Texture").GetComponent<SpriteRenderer>().sprite;
 
       IsConsumable = itemSo.IsConsumable;
