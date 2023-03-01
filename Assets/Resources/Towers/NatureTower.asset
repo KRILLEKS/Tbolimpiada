@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2088bff4bdf5dfb4e8df3fdc1cc84cc4, type: 3}
   m_Name: NatureTower
   m_EditorClassIdentifier: 
-  towerName: NatureTower
+  towerType: 1
   attackDamage: 10
   attackSpeed: 2
   healthAmount: 100

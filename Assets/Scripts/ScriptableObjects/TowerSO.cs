@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Tower", menuName = "ScriptableObjects/Tower")]
 public class TowerSO : ScriptableObject
 {
-   public string towerName;
+   public Constants.TowerTypes towerType;
    public float attackDamage;
    public float attackSpeed; // attacks per second
    public float healthAmount;

@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkillTreeHandler : MonoBehaviour
+public class SkillTreeController : MonoBehaviour
 {
    [SerializeField] private Transform tabFolder;
    [SerializeField] private Color unlockedTransitionColorSerializable;

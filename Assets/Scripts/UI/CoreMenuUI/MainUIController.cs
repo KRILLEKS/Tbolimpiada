@@ -129,7 +129,8 @@ public class MainUIController : MonoBehaviour
       void UpdateAllMenusInfo()
       {
          InventoryUIHandler.UpdateInventoryInfo();
-         SkillTreeHandler.UpdateUIInfo();
+         SkillTreeController.UpdateUIInfo();
+         BuidTabController.UpdateUIInfo();
       }
    }
 

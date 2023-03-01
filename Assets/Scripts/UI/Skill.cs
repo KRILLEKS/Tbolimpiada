@@ -31,10 +31,10 @@ public class Skill : MonoBehaviour
       transform.Find("SkillTreeBackground").GetComponent<RawImage>().texture = Resources.Load<Texture2D>("UI/SkillTree/UnlockedSkill");
 
       foreach (var childrenRawImage in transform.Find("Transitions").GetComponentsInChildren<RawImage>())
-         childrenRawImage.color = SkillTreeHandler.UnlockedTransitionColor;
+         childrenRawImage.color = SkillTreeController.UnlockedTransitionColor;
 
       isUnlocked = true;
       PlayerSkillsHandler.Upgrade(upgradeType, amount);
-      SkillTreeHandler.UpdateUIInfo();
+      SkillTreeController.UpdateUIInfo();
    }
 }

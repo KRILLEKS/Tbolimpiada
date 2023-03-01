@@ -32,6 +32,11 @@ public class InventoryHandler
       return new (_inventoryDictionary);
    }
 
+   public static int GetItemAmount(Constants.Items itemType)
+   {
+      return _inventoryDictionary.ContainsKey(itemType) ? _inventoryDictionary[itemType] : -1;
+   }
+
    public static void EatItem(Constants.Items itemType)
    {
       GetRidOfItem(itemType,1);

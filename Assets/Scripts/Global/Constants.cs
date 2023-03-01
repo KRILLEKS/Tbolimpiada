@@ -52,4 +52,11 @@ public class Constants
       Soul, // from soulShard - forEssence
       PureSoul // from soulShard - toBuild / toEat (super rare)
    }
+   
+   public enum TowerTypes
+   {
+      Catapult,
+      NatureTower,
+      Tesla
+   }
 }
