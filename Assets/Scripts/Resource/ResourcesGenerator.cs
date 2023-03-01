@@ -21,9 +21,10 @@ public class ResourcesGenerator : MonoBehaviour
 
    private void Start()
    {
-      for (int i = 0; i < 100; i++)
+      for (int i = 0; i < 600; i++)
       {
          SpawnResource(Constants.Resources.Wood);
+         SpawnResource(Constants.Resources.Stone);
       }
    }
 

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceType: 0
   object2Instantiate: {fileID: 7053270559034023998, guid: b0c6c1f610b3db443815046996ab8cdb, type: 3}
-  baseResourceLimit: 500
+  baseResourceLimit: 1000
   resourceLimitIncrement: 0
   resource2XChanceIncrement: 10
   resourceHealthAmount: 100

@@ -58,6 +58,11 @@ public class TilemapHandler : MonoBehaviour
       _emptyTiles.Remove(tile2Occupy);
    }
 
+   public static void OccupyTileForPlayer(TileData tile2Occupy)
+   {
+      _emptyTiles.Remove(tile2Occupy);
+   }
+
    public static void ReleaseTile(Vector3 tilePos)
    {
       var tileData = GetTileOnPosition(new Vector2Int(Mathf.FloorToInt(tilePos.x), Mathf.FloorToInt(tilePos.y)));

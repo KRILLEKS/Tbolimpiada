@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
    private static float _movementSpeed;
 
    private static SpriteRenderer[] _playerBodyParts;
-   private static Vector2Int _previousTilePos = Vector2Int.zero;
+   private static Vector2Int _previousTilePos;
    private static bool _isAble2Move = true;
    private static Vector3 _rotationVector;
 
@@ -24,6 +24,10 @@ public class PlayerMovement : MonoBehaviour
 
       for (var index = 0; index < _playerBodyParts.Length; index++)
          _playerBodyParts[index] = texture.GetChild(index).GetComponent<SpriteRenderer>();
+
+      _previousTilePos = new Vector2Int(Vector2Int.FloorToInt(transform.position).x + 10, 0); // any value that is different from player pos
+      transform.position = new Vector3(0, 0);
+      TilemapHandler.OccupyTileForPlayer(TilemapHandler.GetTileOnPosition(new Vector2Int(0, 0)));
    }
 
    private void Update()
@@ -34,19 +38,26 @@ public class PlayerMovement : MonoBehaviour
       // TODO: improve movement so player can move diagonally next to the obstacle
       void Move()
       {
-         var movementPosition = transform.position + (Vector3)(Input.MovementVector * (_movementSpeed * Time.deltaTime));
+         if (Input.MovementVector == Vector2.zero)
+            return;
+         
+         var movementPosition = transform.position + (Vector3) (Input.MovementVector * (_movementSpeed * Time.deltaTime));
 
          // optimization
          if (_previousTilePos != Vector2Int.FloorToInt(movementPosition))
          {
             _previousTilePos = Vector2Int.FloorToInt(movementPosition);
             _isAble2Move = TilemapHandler.IsTileEmpty(_previousTilePos);
-            
+
             SetSortingOrder();
          }
 
          if (_isAble2Move)
+         {
+            TilemapHandler.ReleaseTile(Vector3Int.FloorToInt(transform.position));
+            TilemapHandler.OccupyTileForPlayer(TilemapHandler.GetTileOnPosition(Vector2Int.FloorToInt(movementPosition)));
             transform.position = movementPosition;
+         }
       }
       void Rotate()
       {
