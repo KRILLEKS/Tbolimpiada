@@ -164,7 +164,7 @@ public class InventoryUIHandler
 
    private static void Destroy()
    {
-      InventoryHandler.DestroyItem(_itemSlots[_currentItemSlotIndex].Item.ItemType, _currentAmount2Destroy);
+      InventoryHandler.DestroyItemForEssence(_itemSlots[_currentItemSlotIndex].Item.ItemType, _currentAmount2Destroy);
 
       GetRidOfItem(_currentAmount2Destroy);
    }

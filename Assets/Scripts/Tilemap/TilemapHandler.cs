@@ -50,10 +50,14 @@ public class TilemapHandler : MonoBehaviour
    {
       return _emptyTiles[Random.Range(0, _emptyTiles.Count)];
    }
-
+   
    public static void OccupyTile(TileData tile2Occupy, ObjectOnTile objectOnTileClass)
    {
       tile2Occupy.ObjectOnTile = objectOnTileClass;
+      OccupyTile(tile2Occupy);
+   }
+   public static void OccupyTile(TileData tile2Occupy)
+   {
       _tiles[tile2Occupy.X][tile2Occupy.Y].IsEmpty = false;
       _emptyTiles.Remove(tile2Occupy);
    }

@@ -77,7 +77,7 @@ public class BuidTabController : MonoBehaviour
       foreach (var tower in _towerSos)
          _towerSelectionButtonsTransform.Find(tower.Value.towerType.ToString()).GetComponent<Button>().onClick.AddListener(() => SetTower(tower.Key));
 
-      _buildTabFolder.Find("Build").GetComponent<Button>().onClick.AddListener(() =>BuildController.StartBuildProcess(_towerSos[_currentSelectedTower].towerGO));
+      _buildTabFolder.Find("Build").GetComponent<Button>().onClick.AddListener(() =>BuildController.StartBuildProcess(_towerSos[_currentSelectedTower], _towerSos[_currentSelectedTower].price));
 
       SetTower(Constants.TowerTypes.Catapult, true);
    }

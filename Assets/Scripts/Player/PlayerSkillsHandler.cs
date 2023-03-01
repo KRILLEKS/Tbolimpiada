@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerSkillsHandler
 {
-   public static int AvailableSkillPoints { private set; get; } = 10;
+   public static int AvailableSkillPoints { private set; get; } = 1;
    
    public enum SkillUpgrades
    {

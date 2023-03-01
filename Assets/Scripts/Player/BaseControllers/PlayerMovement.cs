@@ -26,8 +26,8 @@ public class PlayerMovement : MonoBehaviour
          _playerBodyParts[index] = texture.GetChild(index).GetComponent<SpriteRenderer>();
 
       _previousTilePos = new Vector2Int(Vector2Int.FloorToInt(transform.position).x + 10, 0); // any value that is different from player pos
-      transform.position = new Vector3(0, 0);
-      TilemapHandler.OccupyTileForPlayer(TilemapHandler.GetTileOnPosition(new Vector2Int(0, 0)));
+      transform.position = new Vector3(2.5f, 2.5f);
+      TilemapHandler.OccupyTileForPlayer(TilemapHandler.GetTileOnPosition(new Vector2Int(2, 2)));
    }
 
    private void Update()

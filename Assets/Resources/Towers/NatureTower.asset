@@ -16,7 +16,7 @@ MonoBehaviour:
   attackDamage: 10
   attackSpeed: 2
   healthAmount: 100
-  towerGO: {fileID: 0}
+  towerGO: {fileID: 569581257638389226, guid: b3d85168fff336b4ab2f74d7cc90c164, type: 3}
   size: {x: 1, y: 2}
   price:
   - ItemType: 11

@@ -5,12 +5,11 @@ using UnityEngine;
 
 public class ResourcesGenerator : MonoBehaviour
 {
-   [SerializeField] private bool toGenerateResources;
-   [Space]
    [SerializeField] private Transform folderSerializable;
    [SerializeField] private float resourceSpawnRate; // in seconds
 
-   private float _lastResourceGenerationTime;
+   private static bool _toGenerateResources = true;
+   private static float _lastResourceGenerationTime;
 
    private static Transform _commonFolder;
 
@@ -19,6 +18,8 @@ public class ResourcesGenerator : MonoBehaviour
       _commonFolder = folderSerializable;
    }
 
+   // hard code
+   // in future it will be replaced with resource upgrade system
    private void Start()
    {
       for (int i = 0; i < 600; i++)
@@ -26,11 +27,23 @@ public class ResourcesGenerator : MonoBehaviour
          SpawnResource(Constants.Resources.Wood);
          SpawnResource(Constants.Resources.Stone);
       }
+      
+      for (int i = 0; i < 10; i++)
+      {
+         SpawnResource(Constants.Resources.Coal);
+         SpawnResource(Constants.Resources.Crystal);
+         SpawnResource(Constants.Resources.Flowers);
+         SpawnResource(Constants.Resources.Hardwood);
+         SpawnResource(Constants.Resources.Obelisk);
+         SpawnResource(Constants.Resources.Pumpkin);
+         SpawnResource(Constants.Resources.BerryBush);
+         SpawnResource(Constants.Resources.IronOre);
+      }
    }
 
    void Update()
    {
-      if (toGenerateResources == false)
+      if (_toGenerateResources == false)
          return;
       
       if (Time.time - _lastResourceGenerationTime > resourceSpawnRate)
@@ -41,6 +54,11 @@ public class ResourcesGenerator : MonoBehaviour
          _lastResourceGenerationTime = Time.time;
       }
    }
+
+   // public static void SetResourceGenerationState(bool toGenerate)
+   // {
+   //    _toGenerateResources = toGenerate;
+   // }
 
    // TODO: make folder for spawned resources by types
    private static void SpawnResource(Constants.Resources resource2Spawn)

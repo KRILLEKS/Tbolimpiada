@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2492848680846011606}
   - component: {fileID: 2836536434214431250}
   m_Layer: 0
-  m_Name: Catapult
+  m_Name: NatureTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7fe62488dcd9f84683dd2fe876fb348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PoolName: Tesla
+  PoolName: NatureTower
   ObjectClass: {fileID: 0}
   SpriteRenderer: {fileID: 4813754173303667016}
 --- !u!1 &7687742260848857133
@@ -73,7 +73,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7687742260848857133}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.25, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -121,7 +121,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1000
-  m_Sprite: {fileID: 21300000, guid: 8cd5253926b3bcf4388c495de811e33b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 665a012e1978e7d4cbdf2495d89df3c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

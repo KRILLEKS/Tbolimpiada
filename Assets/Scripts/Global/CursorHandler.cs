@@ -22,6 +22,9 @@ public class CursorHandler : MonoBehaviour
 
    private void Update()
    {
+      if (Time.timeScale==0)
+         return;
+      
       var cursorWorldPos = mainCamera.ScreenToWorldPoint(Input.MousePosition);
       Vector2Int tileUnderCursor = new Vector2Int(Mathf.FloorToInt(cursorWorldPos.x), Mathf.FloorToInt(cursorWorldPos.y));
 

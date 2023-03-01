@@ -46,6 +46,15 @@ public partial class @InputMap : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""RightClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""9b178fb6-b8e2-4a0d-b763-dd757b23ae85"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""OpenMainMenu"",
                     ""type"": ""Button"",
                     ""id"": ""8addbe4a-524f-4a74-b82b-1f3b82ca51a9"",
@@ -209,6 +218,17 @@ public partial class @InputMap : IInputActionCollection2, IDisposable
                     ""action"": ""OpenMainMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""79916a5c-54bf-4f1e-be59-7683b905b42e"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -219,6 +239,7 @@ public partial class @InputMap : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_LeftClick = m_Player.FindAction("LeftClick", throwIfNotFound: true);
+        m_Player_RightClick = m_Player.FindAction("RightClick", throwIfNotFound: true);
         m_Player_OpenMainMenu = m_Player.FindAction("OpenMainMenu", throwIfNotFound: true);
     }
 
@@ -281,6 +302,7 @@ public partial class @InputMap : IInputActionCollection2, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_LeftClick;
+    private readonly InputAction m_Player_RightClick;
     private readonly InputAction m_Player_OpenMainMenu;
     public struct PlayerActions
     {
@@ -288,6 +310,7 @@ public partial class @InputMap : IInputActionCollection2, IDisposable
         public PlayerActions(@InputMap wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @LeftClick => m_Wrapper.m_Player_LeftClick;
+        public InputAction @RightClick => m_Wrapper.m_Player_RightClick;
         public InputAction @OpenMainMenu => m_Wrapper.m_Player_OpenMainMenu;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -304,6 +327,9 @@ public partial class @InputMap : IInputActionCollection2, IDisposable
                 @LeftClick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftClick;
                 @LeftClick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftClick;
                 @LeftClick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftClick;
+                @RightClick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightClick;
+                @RightClick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightClick;
+                @RightClick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightClick;
                 @OpenMainMenu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenMainMenu;
                 @OpenMainMenu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenMainMenu;
                 @OpenMainMenu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenMainMenu;
@@ -317,6 +343,9 @@ public partial class @InputMap : IInputActionCollection2, IDisposable
                 @LeftClick.started += instance.OnLeftClick;
                 @LeftClick.performed += instance.OnLeftClick;
                 @LeftClick.canceled += instance.OnLeftClick;
+                @RightClick.started += instance.OnRightClick;
+                @RightClick.performed += instance.OnRightClick;
+                @RightClick.canceled += instance.OnRightClick;
                 @OpenMainMenu.started += instance.OnOpenMainMenu;
                 @OpenMainMenu.performed += instance.OnOpenMainMenu;
                 @OpenMainMenu.canceled += instance.OnOpenMainMenu;
@@ -328,6 +357,7 @@ public partial class @InputMap : IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnLeftClick(InputAction.CallbackContext context);
+        void OnRightClick(InputAction.CallbackContext context);
         void OnOpenMainMenu(InputAction.CallbackContext context);
     }
 }

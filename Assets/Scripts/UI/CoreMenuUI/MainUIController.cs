@@ -17,6 +17,8 @@ public class MainUIController : MonoBehaviour
    [SerializeField] private Color activeTabColorSerializable;
    [SerializeField] private Color inactiveTabColorSerializable;
 
+   public static bool IsAble2SwitchMenuState = true;
+   
    private static GameObject _mainUICanvas;
    private static GameObject _overlayCanvas;
    private static float _blurFadeInTime;
@@ -104,6 +106,9 @@ public class MainUIController : MonoBehaviour
 
    public static void SwitchMainMenuState()
    {
+      if (IsAble2SwitchMenuState == false)
+         return;
+      
       // disable
       if (_mainUICanvas.activeSelf)
       {

@@ -18,6 +18,7 @@ public class ResourcesHandler : MonoBehaviour
       IncreaseResourceLevel(Constants.Resources.Wood);
       IncreaseResourceLevel(Constants.Resources.Stone);
       IncreaseResourceLevel(Constants.Resources.Obelisk);
+      IncreaseResourceLevel(Constants.Resources.Crystal);
       IncreaseResourceLevel(Constants.Resources.BerryBush);
       IncreaseResourceLevel(Constants.Resources.Coal);
       IncreaseResourceLevel(Constants.Resources.IronOre);

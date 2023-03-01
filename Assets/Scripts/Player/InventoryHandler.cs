@@ -45,15 +45,15 @@ public class InventoryHandler
       PlayerEnergyController.AddEnergy(item.EnergyGain);
       PlayerHealthController.AddHealth(item.HealthGain);
    }
-
-   public static void DestroyItem(Constants.Items itemType, int amount)
+   
+   public static void DestroyItemForEssence(Constants.Items itemType, int amount)
    {
       GetRidOfItem(itemType, amount);
       
       PlayerLevelHandler.AddEssence(ItemsHandler.GetItem(itemType).EssenceGain * amount);
    }
 
-   private static void GetRidOfItem(Constants.Items itemType, int amount)
+   public static void GetRidOfItem(Constants.Items itemType, int amount)
    {
       _inventoryDictionary[itemType] -= amount;
 
