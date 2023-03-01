@@ -28,7 +28,7 @@ public class PlayerAttackController : MonoBehaviour
 
       _lastAttackTime = Time.time;
       PlayerAnimatorController.SetAttackAnimation();
-      PlayerSphereController.Fly2Object(10);
+      PlayerSphereController.Fly2Object(Constants.PlayerBaseDamage);
 
       PlayerEnergyController.SpendEnergy(1);
    }

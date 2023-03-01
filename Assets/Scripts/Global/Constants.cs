@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Constants
 {
+   public const int PlayerBaseDamage = 20;
    public const int PlayerMaxHealth = 1000;
    public const int PlayerMaxEnergy = 100;
 

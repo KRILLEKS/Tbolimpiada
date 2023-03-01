@@ -17,7 +17,7 @@ MonoBehaviour:
   baseResourceLimit: 20
   resourceLimitIncrement: 10
   resource2XChanceIncrement: 5
-  resourceHealthAmount: 40
+  resourceHealthAmount: 100
   itemDrops:
   - Item: 13
     DropChance: 0.4
