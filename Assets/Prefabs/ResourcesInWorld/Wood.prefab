@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: -4729625729869689036}
   m_Layer: 0
   m_Name: Wood
-  m_TagString: Untagged
+  m_TagString: MinedByAxe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,6 +133,7 @@ MonoBehaviour:
   PoolName: 
   ObjectClass: {fileID: 0}
   SpriteRenderer: {fileID: 0}
+  objectTag: 
   resourceType: 0
 --- !u!1001 &392360003539612499
 PrefabInstance:

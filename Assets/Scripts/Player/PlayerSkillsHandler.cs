@@ -8,8 +8,10 @@ public class PlayerSkillsHandler
    
    public enum SkillUpgrades
    {
-      AttackIncrease,
-      
+      AttackDamageIncrease,
+      PickaxeDamageIncrease,
+      AxeDamageIncrease,
+      HoeDamageIncrease,
    }
    public enum UpgradeValue
    {
@@ -24,8 +26,41 @@ public class PlayerSkillsHandler
       AvailableSkillPoints++;
    }
 
-   public static void Upgrade(SkillUpgrades upgradeType, UpgradeValue value)
+   public static void Upgrade(SkillUpgrades upgradeType, UpgradeValue valueType)
    {
-      Debug.Log($"Upgrade: {upgradeType} + {value}");
+      int value = 0;
+      switch (valueType)
+      {
+         case UpgradeValue.Small:
+            value = 1;
+            break;
+         case UpgradeValue.Medium:
+            value = 2;
+            break;
+         case UpgradeValue.High:
+            value = 3;
+            break;
+         case UpgradeValue.SuperHigh:
+            value = 6;
+            break;
+      }
+
+      switch (upgradeType)
+      {
+         case SkillUpgrades.AttackDamageIncrease:
+            PlayerData.AttackDamageIncrement += value;
+            break;
+         case SkillUpgrades.PickaxeDamageIncrease:
+            PlayerData.PickaxeDamageIncrement += value;
+            break;
+         case SkillUpgrades.AxeDamageIncrease:
+            PlayerData.AxeDamageIncrement += value;
+            break;
+         case SkillUpgrades.HoeDamageIncrease:
+            PlayerData.HoeDamageIncrement += value;
+            break;
+      }
+
+      AvailableSkillPoints--;
    }
 }

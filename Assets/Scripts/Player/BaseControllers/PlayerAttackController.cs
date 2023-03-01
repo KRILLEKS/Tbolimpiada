@@ -28,8 +28,23 @@ public class PlayerAttackController : MonoBehaviour
 
       _lastAttackTime = Time.time;
       PlayerAnimatorController.SetAttackAnimation();
-      PlayerSphereController.Fly2Object(Constants.PlayerBaseDamage);
+      PlayerSphereController.Fly2Object(Constants.PlayerBaseDamage + GetExtraDamageVal(CursorHandler.SelectedObject));
 
       PlayerEnergyController.SpendEnergy(1);
+   }
+
+   private static int GetExtraDamageVal(ObjectOnTile selectedObject)
+   {
+      switch (selectedObject.tag)
+      {
+         case "MinedByPickaxe":
+            return PlayerData.PickaxeDamageIncrement;
+         case "MinedByAxe":
+            return PlayerData.AxeDamageIncrement;
+         case "MinedByHoe":
+            return PlayerData.HoeDamageIncrement;
+      }
+
+      return 0;
    }
 }

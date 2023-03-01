@@ -35,5 +35,6 @@ public class Skill : MonoBehaviour
 
       isUnlocked = true;
       PlayerSkillsHandler.Upgrade(upgradeType, amount);
+      SkillTreeHandler.UpdateUIInfo();
    }
 }

@@ -7,12 +7,15 @@ using Object = System.Object;
 
 public class ObjectOnTile : PoolObject
 {
+   public string objectTag;
    internal ObjectHealthBarController ObjectHealthBarController;
 
    internal virtual void Awake()
    {
       ObjectClass = this;
       ObjectHealthBarController = gameObject.GetComponentInChildren<ObjectHealthBarController>();
+
+      objectTag = gameObject.tag;
 
       InitializeHealthBar();
    }

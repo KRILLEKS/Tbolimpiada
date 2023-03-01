@@ -50,7 +50,6 @@ public class ResourceData
       }
    }
 
-   // TODO: make invocation of this via object pooling
    public void ResourceWasSpawned()
    {
       CurrentResourceAmountOnMap++;

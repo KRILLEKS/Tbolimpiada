@@ -32,7 +32,7 @@ public class MainUIController : MonoBehaviour
 
    private enum Tabs
    {
-      PickaxeUpgrade,
+      Skills,
       Inventory,
       Build,
       Settings
@@ -129,6 +129,7 @@ public class MainUIController : MonoBehaviour
       void UpdateAllMenusInfo()
       {
          InventoryUIHandler.UpdateInventoryInfo();
+         SkillTreeHandler.UpdateUIInfo();
       }
    }
 
